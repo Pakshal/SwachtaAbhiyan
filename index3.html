@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate of Appreciation</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            margin: 20px auto;
+        }
+        .input-container {
+            margin: 20px;
+        }
+        canvas {
+            border: 2px solid #4CAF50;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Certificate of Appreciation</h1>
+        <p>Enter your name to generate your certificate</p>
+        
+        <div class="input-container">
+            <input type="text" id="nameInput" placeholder="Enter your name" style="font-size: 18px; padding: 10px; border-radius: 5px;">
+        </div>
+        
+        <button class="btn" onclick="generateCertificate()">Generate Certificate</button>
+        
+        <br><br>
+        
+        <canvas id="certificateCanvas" width="800" height="600"></canvas>
+        <br><br>
+        <button class="btn" onclick="downloadCertificate()">Download Certificate</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
+    <script>
+        const pledgeLink = 'https://your-pledge-link.com';  // Replace with the actual pledge link
+
+        function generateCertificate() {
+            const name = document.getElementById("nameInput").value;
+            const canvas = document.getElementById("certificateCanvas");
+            const ctx = canvas.getContext("2d");
+            
+            // Clear the previous canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Set background color and draw rectangle
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Border Color and Width
+            ctx.strokeStyle = "#4CAF50";
+            ctx.lineWidth = 8;
+            ctx.strokeRect(0, 0, canvas.width, canvas.height);
+            
+            // Add Title
+            ctx.fillStyle = "#4CAF50";
+            ctx.font = "36px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText("Certificate of Appreciation", canvas.width / 2, 70);
+
+            // Add certificate content
+            ctx.fillStyle = "#000";
+            ctx.font = "18px Arial";
+            ctx.textAlign = "left";
+            ctx.fillText("This is to recognize that", 50, 130);
+            ctx.fillText("has taken a powerful pledge on Fagan Sud 13 to keep Shatrunjay Teerth clean,", 50, 160);
+            ctx.fillText("protect its sacredness, and ensure its beauty lasts for generations to come.", 50, 190);
+
+            ctx.fillText("By taking this pledge, you’ve not only committed to preserving one of the holiest places", 50, 230);
+            ctx.fillText("on earth but also shown true leadership in protecting our environment.", 50, 260);
+            ctx.fillText("Your action speaks louder than words—your commitment to the cleanliness of", 50, 290);
+            ctx.fillText("Shatrunjay Teerth sets an inspiring example for all to follow.", 50, 320);
+
+            ctx.fillText("Date: [Date]    Location: [Location]   Fagan Sud 13", 50, 380);
+
+            // Add Name in the dynamic field
+            if (name) {
+                ctx.fillStyle = "#4CAF50";
+                ctx.font = "22px Arial";
+                ctx.fillText(name, canvas.width / 2, 450);
+            }
+
+            // Signature Line
+            ctx.strokeStyle = "#000";
+            ctx.lineWidth = 2;
+            ctx.moveTo(50, 500);
+            ctx.lineTo(canvas.width - 50, 500);
+            ctx.stroke();
+            
+            ctx.fillStyle = "#000";
+            ctx.font = "16px Arial";
+            ctx.fillText("Signature", canvas.width / 2, 540);
+            ctx.fillText("[Organization Name]", canvas.width / 2, 570);
+            
+            // Add Call-to-Action Text Link for Pledge
+            ctx.fillStyle = "#000";
+            ctx.font = "16px Arial";
+            ctx.fillText("Take the pledge here: " + pledgeLink, 50, 580);
+            
+            // Add QR Code for Pledge Link
+            QRCode.toDataURL(pledgeLink, function (err, url) {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                const img = new Image();
+                img.onload = function () {
+                    ctx.drawImage(img, canvas.width - 150, 500, 100, 100);
+                };
+                img.src = url;
+            });
+        }
+
+        function downloadCertificate() {
+            const canvas = document.getElementById("certificateCanvas");
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL('image/png');
+            link.download = 'certificate_of_appreciation.png';
+            link.click();
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en"> 
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+   
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- AOS CSS (for animations) -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <style>
+      /* Navbar logo */
+      .navbar-brand img {
+        height: 50px; /* Set a height for your logo */
+      }
+
+      /* Carousel images */
+      .carousel-item img {
+        width: 100%; /* Full width of the carousel container */
+        height: 80vh; /* Set a dynamic height */
+        object-fit: cover; /* Cover the area of the carousel without distortion */
+      }
+
+      /* Ensure carousel items are responsive */
+      .carousel-inner {
+        max-height: 80vh;
+      }
+
+      /* Custom styles for the carousel */
+      .carousel-caption {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 20px;
+      }
+
+      /* Add smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body>
+    
+  <!-- Header with logo in the Navbar -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <!-- Replace this src with the actual logo image path -->
+          <img src="logo.png" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Why Faagan Feri</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="whyinitiative.html">About this initiative</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pledgeform.html">Pledge Today</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <button class="btn btn-outline-success" type="submit">Pledge</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main content -->
+  <main>
+
+    <!-- Carousel -->
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-aos="fade-up">
+          <img src="Slide2.png" alt="Slide 1">
+          <div class="container">
+            <div class="carousel-caption text-start">
+              <h1>Preserve the Sanctity of Shatrunjay Teerth.</h1>
+              <p>Join thousands of pilgrims who are committed to protecting this sacred hill.</p>
+              <p><a class="btn btn-lg btn-primary" href="pledgeform.html">Pledge Today</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" data-aos="fade-up" data-aos-delay="200">
+          <img src="Slide1.png" alt="Slide 2">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Stand Together for Shatrunjay</h1>
+              <p>Your support is crucial to preserving this sacred site for generations to come.</p>
+              <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" data-aos="fade-up" data-aos-delay="400">
+          <img src="Slide3.png" alt="Slide 3">
+          <div class="container">
+            <div class="carousel-caption text-end">
+              <h1>Be Part of the Movement</h1>
+              <p>Let your pledge help maintain the sanctity of Shatrunjay Teerth.</p>
+              <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <!-- Marketing messaging and featurettes -->
+    <br>
+    <br>
+    <br>
+    <div class="container marketing">
+
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div class="col-lg-4" data-aos="fade-up">
+          <img src="feri.png" alt="Image" width="140" height="150" class="rounded-circle"/>
+          <h2>Fagan Pheri Rahasya</h2>
+          <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
+          <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <img src="initiative.jpg" alt="Image" width="140" height="150" class="rounded-circle"/>
+          <h2>Why This Initative</h2>
+          <p>In March 2024, students from Tapovan Sanskar Peeth, Shatrunjay Youth Mandal, and Lok Bharati School, supported by the forest department, cleaned Shatrunjay hills, collecting 100 bags of garbage, but discovered damaging practices during the Fagan Ferry journey that needs to be avoided during this pheri.</p>
+          <p><a class="btn btn-secondary" href="whyinitiative.html">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+          <img src="joinhands.png" alt="Image" width="140" height="140" class="rounded-circle"/>
+          <h2>Be part of movement</h2>
+          <p>And lastly this, the third column of representative placeholder content.</p>
+          <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
+
+      <!-- START THE FEATURETTES -->
+      <hr class="featurette-divider">
+      
+      <div class="row featurette">
+      <div class="col-md-7" data-aos="fade-left">
+        <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+        <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
+      </div>
+      <div class="col-md-5" data-aos="zoom-in">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+
+      </div>
+    </div>
+
+      <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2" data-aos="fade-left">
+        <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
+        <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+      </div>
+      <div class="col-md-5 order-md-1" data-aos="zoom-in">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7" data-aos="fade-left">
+        <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+        <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
+      </div>
+      <div class="col-md-5" data-aos="zoom-in">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="container">
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-lg-4">
+        OUR SUPPPORTERS
+          
+        </svg>
+
+        
+      </div><!-- /.col-lg-4 -->
+
+
+    <div class="row">
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <img src="feri.png" alt="Image" width="140" height="150" class="rounded-circle"/>
+        </svg>
+
+        
+      </div><!-- /.col-lg-4 -->
+
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <img src="initiative.jpg" alt="Image" width="140" height="150" class="rounded-circle"/>
+        </svg>
+
+        
+      </div><!-- /.col-lg-4 -->
+      
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <img src="joinhands.png" alt="Image" width="140" height="140" class="rounded-circle"/>
+        </svg>
+
+        
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+  </footer>
+
+  <!-- AOS JS and Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Initialize AOS
+    AOS.init();
+  </script>
+</body>
+</html>

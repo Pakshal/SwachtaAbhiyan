@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en"> 
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+   
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- AOS CSS (for animations) -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <style>
+      /* Navbar logo */
+      .navbar-brand img {
+        height: 50px; /* Set a height for your logo */
+      }
+
+      /* Carousel images */
+      .carousel-item img {
+        width: 100%; /* Full width of the carousel container */
+        height: 80vh; /* Set a dynamic height */
+        object-fit: cover; /* Cover the area of the carousel without distortion */
+      }
+
+      /* Ensure carousel items are responsive */
+      .carousel-inner {
+        max-height: 80vh;
+      }
+
+      /* Custom styles for the carousel */
+      .carousel-caption {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 20px;
+      }
+
+      /* Add padding to the body or main content to prevent overlap with the fixed navbar */
+      body {
+        padding-top: 80px; /* Adjust this value based on your navbar height */
+      }
+
+      /* Add smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body>
+    
+  <!-- Header with logo in the Navbar -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <!-- Replace this src with the actual logo image path -->
+          <img src="logo.png" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Why Faagan Feri</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About this initiative</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pledgeform.html">Pledge Today</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <button class="btn btn-outline-success" type="submit">Pledge</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main content -->
+  <main>
+
+   <!-- Carousel -->
+    <!-- <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-aos="fade-up">
+          <img src="./whyinitiativeimages/image1.png" alt="Slide 1">
+          <div class="container">
+            <div class="carousel-caption text-start">
+              <h1>Preserve the Sanctity of Shatrunjay Teerth.</h1>
+              <p>Join thousands of pilgrims who are committed to protecting this sacred hill.</p>
+              <p><a class="btn btn-lg btn-primary" href="pledgeform.html">Pledge Today</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" data-aos="fade-up" data-aos-delay="200">
+          <img src="./whyinitiativeimages/image2.png" alt="Slide 2">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Stand Together for Shatrunjay</h1>
+              <p>Your support is crucial to preserving this sacred site for generations to come.</p>
+              <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" data-aos="fade-up" data-aos-delay="400">
+          <img src="./whyinitiativeimages/image3.png" alt="Slide 3">
+          <div class="container">
+            <div class="carousel-caption text-end">
+              <h1>Be Part of the Movement</h1>
+              <p>Let your pledge help maintain the sanctity of Shatrunjay Teerth.</p>
+              <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>  -->
+
+    <!-- START THE FEATURETTES -->
+      <hr class="featurette-divider">
+      
+      <div class="row featurette">
+      <div class="col-md-7" data-aos="fade-left">
+        <h2 class="featurette-heading">The Sacred Shatrunjay Teerth: A Call for Awareness and Action During the Fagan Pheri Journey[Data and Image Courtesy:Jain Media Youtube Channel]</h2>
+        <p class="lead">Before the Fagan Pheri journey begins, awareness is crucial. In March 2024, a group of students from Tapovan Sanskar Peeth, Shatrunjay Youth Mandal, and children from Lok Bharati School, under their NSS program, gathered to clean and purify places like Giriraj, Chandran Talavdi, and others on the Shatrunjay hills during Fagan Sudhi Teras and Fagan Sudhi Chauth. They collected about <b>100 large bags</b> of garbage. The forest department also supported this sacred work. However, shocking discoveries were made related to the Fagan Ferry journey that are damaging the Shatrunjay Teerth.
+
+        <br><br><br>
+        Shocking Discoveries: Vendors in Palitana set up food and drink stalls during the Fagan Pheri journey. These stalls sell items like water bottles, juice, sugarcane juice, and snacks in plastic plates, cups, and bottles. Pilgrims (our Jain brothers and sisters) buy these items and then discard the used plastic on the hills. This has become a major issue during the Fagan Ferry journey.
+
+        </p>
+      </div>
+      <div class="col-md-5" data-aos="zoom-in">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 250x250" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <image href="./whyinitiativeimages/image1.png" width="500" height="250"/>
+        </svg>
+
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 250x250" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <image href="./whyinitiativeimages/image2.png" width="500" height="300"/>
+        </svg>
+      </div>
+    </div>
+
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2" data-aos="fade-left">
+        <br>
+        <h2 class="featurette-heading">Impact of the above</h2>
+        <p class="lead">
+        Sacredness of Shatrunjay:
+        We don’t eat or drink in temples because temples are sacred spaces for worship, not for eating. Similarly, the entire Giriraj hill is sacred, as mentioned in Shatrunjay Mahatma. What is not allowed in temples should not be done on Shatrunjay hills either. Therefore, eating or drinking during the pilgrimage, including the Fagan Ferry journey, is forbidden. Water fountains are provided by the temple authorities for those who are thirsty, but food and drink should not be consumed.
+        <br>
+        <br>
+        Pilgrims' Struggles:
+        Food stalls tempt hungry and thirsty pilgrims along the journey. Vendors send items up in advance, leading to some pilgrims consuming food on the hill. This behavior pollutes the area and tarnishes the image of those visiting for spiritual purposes.
+        <br>
+        <br>
+        Impact on Pilgrims’ Fast:
+        The 38-kilometer journey is often a fast for many pilgrims, but food stalls along the way weaken their resolve, causing them to break their fast and disrupt the spiritual discipline of the pilgrimage.
+        <br>
+        <br>
+        Waste Generation:
+        Eating at these stalls generates massive waste, polluting the environment. The resulting trash harms Shatrunjay Teerth and undermines the true purpose of the pilgrimage—seeking blessings, not contributing to pollution.
+        <br>
+        <br>
+        Carrying Food and Drinks:
+        Even bringing food or drinks from home leads to others consuming it, perpetuating the cycle of waste and environmental harm, especially as people dispose of trash irresponsibly along the journey.
+        <br>
+        <br>
+        Plastic Pollution:
+        Plastic waste, including bottles, plates, and spoons, takes centuries to decompose. The harmful impact of plastic on Shatrunjay Teerth is irreversible, polluting the land and its ecosystem for future generations.
+        <br>
+        <br>
+        Wildlife Threats:
+        Plastic waste poses a significant threat to wildlife, as animals may ingest or become entangled in it. This endangers both the environment and animals, causing fatal harm.
+        <br>
+        <br>
+        Risk of Restrictions:
+        If the pollution continues, the Forest Department may impose restrictions on pilgrim access to Shatrunjay. It’s our responsibility to preserve the environment to avoid such measures.
+        </p>
+      </div>
+      <div class="col-md-5 order-md-1" data-aos="zoom-in">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="350" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 250x250" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <image href="./whyinitiativeimages/image3.png" width="500" height="250"/>
+        </svg>
+
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="350" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 250x250" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <image href="./whyinitiativeimages/image4.png" width="500" height="250"/>
+        </svg>
+
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="350" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 250x250" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <image href="./whyinitiativeimages/image5.png" width="500" height="250"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="row featurette">
+      <div class="col-md-7" data-aos="fade-left">
+        <h2 class="featurette-heading">Hearfelt Gratitude</h2>
+        <p class="lead">We extend our heartfelt gratitude to the volunteers who have been involved in the cleaning and purifying of these sacred places. Their tireless work and devotion have made a significant difference in preserving the purity of Shatrunjay. Without their efforts, these vital locations on the hills would have been left in a deteriorating condition. Thank you for standing together and protecting the sanctity of Shatrunjay Teerth!Also Jain Media team for highlighting and bringing up this concern.
+        </p>
+      </div>
+      <div class="col-md-5" data-aos="zoom-in">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 250x250" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <image href="./whyinitiativeimages/image6.png" width="500" height="250"/>
+        </svg>
+
+      </div>
+    </div>
+  </main>
+
+
+   <!-- FOOTER -->
+  <footer class="container">
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-lg-4">
+        OUR SUPPPORTERS
+          
+        </svg>
+
+        
+      </div><!-- /.col-lg-4 -->
+
+
+    <div class="row">
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <img src="feri.png" alt="Image" width="140" height="150" class="rounded-circle"/>
+        </svg>
+
+        
+      </div><!-- /.col-lg-4 -->
+
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <img src="initiative.jpg" alt="Image" width="140" height="150" class="rounded-circle"/>
+        </svg>
+
+        
+      </div><!-- /.col-lg-4 -->
+      
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <img src="joinhands.png" alt="Image" width="140" height="140" class="rounded-circle"/>
+        </svg>
+
+        
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+  </footer>
+
+  <!-- AOS JS and Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Initialize AOS
+    AOS.init();
+  </script>
+</body>
+</html>

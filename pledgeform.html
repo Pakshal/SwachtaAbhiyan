@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en"> 
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>Carousel Template · Bootstrap v5.0</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- AOS CSS (for animations) -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <style>
+      /* Navbar logo */
+      .navbar-brand img {
+        height: 50px; /* Set a height for your logo */
+      }
+
+      /* Carousel images */
+      .carousel-item img {
+        width: 100%; /* Full width of the carousel container */
+        height: 80vh; /* Set a dynamic height */
+        object-fit: cover; /* Cover the area of the carousel without distortion */
+      }
+      
+      /* Ensure carousel items are responsive */
+      .carousel-inner {
+        max-height: 80vh;
+      }
+
+      /* Custom styles for the carousel */
+      .carousel-caption {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 20px;
+      }
+
+      /* Add padding to the body or main content to prevent overlap with the fixed navbar */
+      body {
+        padding-top: 80px; /* Adjust this value based on your navbar height */
+      }
+
+      iframe {
+        width: 100%;
+        height: 100vh; /* Full screen height */
+        border: none;
+      }
+
+      body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            margin: 20px auto;
+        }
+        .input-container {
+            margin: 20px;
+        }
+        canvas {
+            border: 2px solid #4CAF50;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+  </head>
+  <body>
+    
+  <!-- Header with logo in the Navbar -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <!-- Replace this src with the actual logo image path -->
+          <img src="logo.png" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Why Faagan Feri</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="whyinitiative.html">About this initiative</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pledgeform.html">Pledge Today</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <button class="btn btn-outline-success" type="submit">Pledge</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+  <!-- Main content -->
+  <main>
+    <!-- Add some padding to prevent the form from being hidden under the navbar -->
+    <!-- <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd0kedANBIw98r06aix66MZxe_RtQ06GurmgPrWnVV3vRHzvQ/viewform?embedded=true" width="640" height="848" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> -->
+
+    <h1>Generate Certificate of Appreciation</h1>
+
+    <div class="container">
+        <h1>Certificate of Appreciation</h1>
+        <p>Enter your name to generate your certificate</p>
+        
+        <div class="input-container">
+            <input type="text" id="nameInput" placeholder="Enter your name" style="font-size: 18px; padding: 10px; border-radius: 5px;">
+        </div>
+        
+        <button class="btn" onclick="generateCertificate()">Generate Certificate</button>
+        
+        <br><br>
+        
+        <canvas id="certificateCanvas" width="800" height="600"></canvas>
+        <br><br>
+        <button class="btn" onclick="downloadCertificate()">Download Certificate</button>
+    </div>
+
+    <script>
+        function generateCertificate() {
+            const name = document.getElementById("nameInput").value;
+            const canvas = document.getElementById("certificateCanvas");
+            const ctx = canvas.getContext("2d");
+            
+            // Clear the previous canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Set background color and draw rectangle
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Border Color and Width
+            ctx.strokeStyle = "#4CAF50";
+            ctx.lineWidth = 8;
+            ctx.strokeRect(0, 0, canvas.width, canvas.height);
+            
+            // Add Title
+            ctx.fillStyle = "#4CAF50";
+            ctx.font = "36px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText("Certificate of Appreciation", canvas.width / 2, 70);
+
+            // Add certificate content
+            ctx.fillStyle = "#000";
+            ctx.font = "18px Arial";
+            ctx.textAlign = "left";
+            ctx.fillText("This is to recognize that", 50, 130);
+            ctx.fillText("has taken a powerful pledge on Fagan Sud 13 to keep Shatrunjay Teerth clean,", 50, 160);
+            ctx.fillText("protect its sacredness, and ensure its beauty lasts for generations to come.", 50, 190);
+
+            ctx.fillText("By taking this pledge, you’ve not only committed to preserving one of the holiest places", 50, 230);
+            ctx.fillText("on earth but also shown true leadership in protecting our environment.", 50, 260);
+            ctx.fillText("Your action speaks louder than words—your commitment to the cleanliness of", 50, 290);
+            ctx.fillText("Shatrunjay Teerth sets an inspiring example for all to follow.", 50, 320);
+
+            ctx.fillText("Date: [Date]    Location: [Location]   Fagan Sud 13", 50, 380);
+
+            // Add Name in the dynamic field
+            if (name) {
+                ctx.fillStyle = "#4CAF50";
+                ctx.font = "22px Arial";
+                ctx.fillText(name, canvas.width / 2, 450);
+            }
+
+            // Signature Line
+            ctx.strokeStyle = "#000";
+            ctx.lineWidth = 2;
+            ctx.moveTo(50, 500);
+            ctx.lineTo(canvas.width - 50, 500);
+            ctx.stroke();
+            
+            ctx.fillStyle = "#000";
+            ctx.font = "16px Arial";
+            ctx.fillText("Signature", canvas.width / 2, 540);
+            ctx.fillText("[Organization Name]", canvas.width / 2, 570);
+        }
+
+        function downloadCertificate() {
+            const canvas = document.getElementById("certificateCanvas");
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL('image/png');
+            link.download = 'certificate_of_appreciation.png';
+            link.click();
+        }
+    </script>
+
+  </main>
+
+    <!-- FOOTER -->
+  <footer class="container">
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-lg-4">
+        OUR SUPPPORTERS
+          
+        </svg>
+
+        
+      </div><!-- /.col-lg-4 -->
+
+
+    <div class="row">
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <img src="feri.png" alt="Image" width="140" height="150" class="rounded-circle"/>
+        </svg>
+
+        
+      </div><!-- /.col-lg-4 -->
+
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <img src="initiative.jpg" alt="Image" width="140" height="150" class="rounded-circle"/>
+        </svg>
+
+        
+      </div><!-- /.col-lg-4 -->
+      
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <img src="joinhands.png" alt="Image" width="140" height="140" class="rounded-circle"/>
+        </svg>
+
+        
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+</html>
