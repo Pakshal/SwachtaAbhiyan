@@ -185,7 +185,7 @@
           
           <div class="input-container">
             <b>Name:</b>
-            <input type="text" id="nameInput" placeholder="Enter the name of person who is taking pledge" class="form-control" style="font-size: 18px;">
+            <input type="text" id="nameInput" placeholder="Enter the name of person who is taking pledge" class="form-control" style="font-size: 18px;" autofocus>
           </div>
           
           <button class="btn" onclick="generateCertificate()">Submit Pledge</button>
@@ -248,69 +248,78 @@
       });
     };
 
-    // Generate certificate content
-    function generateCertificate() {
-        const name = document.getElementById("nameInput").value;
-        const canvas = document.getElementById("certificateCanvas");
-        const ctx = canvas.getContext("2d");
+    // Function to generate the certificate
+function generateCertificate() {
+    // Get the name from the input field
+    const name = document.getElementById("nameInput").value;
 
-        // Clear previous canvas
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Check if the name is empty
+    if (!name.trim()) {
+        alert("Please enter a name before submitting the pledge.");
+        return; // Exit the function if no name is entered
+    }
 
-        // Set background color
-        ctx.fillStyle = "#ffffff";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    const canvas = document.getElementById("certificateCanvas");
+    const ctx = canvas.getContext("2d");
 
-        // Load certificate image
-        const cert_image = new Image();
-        cert_image.src = 'certnew.png';
+    // Clear previous canvas content
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        cert_image.onload = function() {
-            ctx.drawImage(cert_image, 0, 0, canvas.width, canvas.height);
+    // Set background color for the certificate
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Load certificate image
+    const cert_image = new Image();
+    cert_image.src = 'certnew.png'; // Add the path to your certificate image here
+
+    cert_image.onload = function() {
+        ctx.drawImage(cert_image, 0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#000";
+        ctx.font = "22px Arial";
+        ctx.fillText("||Jainam Jayathi Shashanam||", 250, 25);
+
+        // Load the GIF (treated as a static image)
+        const gif_image = new Image();
+        gif_image.src = 'initiative.jpg';  // Change this to your GIF file path
+
+        gif_image.onload = function() {
+            // Draw the GIF as a static image (first frame)
+            ctx.drawImage(gif_image, 50, 50, 100, 100);  // Adjust position and size as needed
+
             ctx.fillStyle = "#000";
             ctx.font = "22px Arial";
-            ctx.fillText("||Jainam Jayathi Shashanam||", 250, 25);
+            ctx.fillText("This is to recognize that", 275, 190);
 
-            // Load the GIF (treated as a static image)
-            const gif_image = new Image();
-            gif_image.src = 'initiative.jpg';  // Change this to your GIF file path
+            // Add the name after the "This is to recognize that" text
+            ctx.fillStyle = "#8B4513";  // Brown color
+            ctx.font = "italic 35px Arial";  // Italic font
+            ctx.fillText("Sri/Shri " + name, 215, 250);
 
-            gif_image.onload = function() {
-                // Draw the GIF as a static image (first frame)
-                ctx.drawImage(gif_image, 50, 50, 100, 100);  // Adjust position and size as needed
+            // Add pledge text
+            ctx.fillStyle = "#000";
+            ctx.font = "22px Arial";
+            ctx.fillText("has taken a pledge to keep Shatrunjay Tirth clean, protect its sacredness,", 50, 300);
+            ctx.fillText("sanctity, and preserve its beauty during fagan pheri 2025..", 50, 330);
+            ctx.font = "25px Arial";
+            ctx.fillText("Thank you for taking this wonderful step towards", 125, 400);
+            ctx.fillText(" making a difference. Together, let’s make sure ", 125, 430);
+            ctx.fillText("Shatrunjay Tirth remains a place of", 175, 460);
+            ctx.fillText("purity and inspiration!", 235, 490);
 
-                ctx.fillStyle = "#000";
-                ctx.font = "22px Arial";
-                ctx.fillText("This is to recognize that", 275, 190);
-
-                // Add the name after the "This is to recognize that" text
-                if (name) {
-                    ctx.fillStyle = "#4CAF50";
-                    ctx.font = "35px Arial";
-                    ctx.fillText(name, 250, 250); // Position the name
-                }
-
-                // Add pledge text
-                ctx.fillStyle = "#000";
-                ctx.font = "22px Arial";
-                ctx.fillText("has taken a pledge to keep Shatrunjay Tirth clean, protect its sacredness,", 50, 300);
-                ctx.fillText("sanctity, and preserve its beauty during fagan pheri 2025..", 50, 330);
-                ctx.font = "30px Arial";
-                ctx.fillText("Your commitment to this sacred place and the", 75, 400);
-                ctx.fillText("environment sets an inspiring example for all.", 75, 430);
-
-                // Make canvas and download button visible
-                canvas.style.display = 'block';
-                canvas.style.opacity = 1;  // Fade in the canvas
-                document.getElementById('downloadButton').disabled = false;  // Enable download button
-            };
+            // Make canvas and download button visible
+            canvas.style.display = 'block';
+            canvas.style.opacity = 1;  // Fade in the canvas
+            document.getElementById('downloadButton').disabled = false;  // Enable download button
         };
+    };
 
-        // Border Color and Width
-        ctx.strokeStyle = "#4CAF50";
-        ctx.lineWidth = 8;
-        ctx.strokeRect(0, 0, canvas.width, canvas.height);
-    }
+    // Set border color and width for the certificate canvas
+    ctx.strokeStyle = "#4CAF50";
+    ctx.lineWidth = 8;
+    ctx.strokeRect(0, 0, canvas.width, canvas.height);
+}
+
 
     function downloadCertificate() {
         const canvas = document.getElementById("certificateCanvas");
