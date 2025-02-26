@@ -1,88 +1,144 @@
 <!doctype html>
-<html lang="en"> 
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.84.0">
-    <title>Carousel Template · Bootstrap v5.0</title>
+    <title>Certificate Generation · Bootstrap v5.0</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- AOS CSS (for animations) -->
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-
-      <!-- Google Fonts for Calligraphy -->
+    <!-- Google Fonts for Calligraphy -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 
-
     <style>
-      /* Navbar logo */
-      .navbar-brand img {
-        height: 50px; /* Set a height for your logo */
-      }
-
-      /* Carousel images */
-      .carousel-item img {
-        width: 100%; /* Full width of the carousel container */
-        height: 80vh; /* Set a dynamic height */
-        object-fit: cover; /* Cover the area of the carousel without distortion */
-      }
-      
-      /* Ensure carousel items are responsive */
-      .carousel-inner {
-        max-height: 80vh;
-      }
-
-      /* Custom styles for the carousel */
-      .carousel-caption {
-        background-color: rgba(0, 0, 0, 0.5);
-        padding: 20px;
-      }
-
-      /* Add padding to the body or main content to prevent overlap with the fixed navbar */
       body {
-        padding-top: 80px; /* Adjust this value based on your navbar height */
+        font-family: 'Arial', sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        position: relative;
       }
 
-      iframe {
-        width: 100%;
-        height: 100vh; /* Full screen height */
+      .container {
+        margin: 20px auto;
+        max-width: 100%;
+        padding-top: 80px;
+        position: relative;
+        z-index: 2; /* Ensure content stays above photos */
+      }
+
+      .input-container {
+        margin-bottom: 20px;
+      }
+
+      canvas {
+        border: 2px solid #4CAF50;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        display: none;
+        margin: 0 auto;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+
+      .btn {
+        background-color: #4CAF50;
+        color: white;
+        font-size: 18px;
+        padding: 10px 20px;
         border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
       }
 
-      body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        .container {
-            margin: 20px auto;
-        }
-        .input-container {
-            margin: 20px;
-        }
-        canvas {
-            border: 2px solid #4CAF50;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
+      .btn:hover {
+        background-color: #45a049;
+      }
+
+      .col-md-8 {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      /* Left and right side photo container */
+      .photo-container {
+        position: absolute;
+        top: 100px;
+        width: 40%;
+        height: 100%;
+      }
+
+      .left-side {
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+
+      .right-side {
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+
+      .photo-placeholder {
+        background-color: #ddd;
+        border-radius: 50%;
+        display: inline-block;
+        width: 140px;
+        height: 140px;
+        line-height: 140px;
+        text-align: center;
+        margin: 20px 0;
+        transition: transform 0.3s ease, opacity 0.5s ease;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .photo-placeholder img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .photo-placeholder.fade-in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Added responsiveness */
+      @media (max-width: 768px) {
+        .input-container input {
+          width: 100%;
+          font-size: 16px;
         }
         .btn {
-            background-color: #4CAF50;
-            color: white;
-            font-size: 18px;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+          width: 100%;
         }
-        .btn:hover {
-            background-color: #45a049;
+        canvas {
+          width: 100%;
+          max-width: 100%;
         }
+        .photo-container {
+          width: 100%;
+          height: auto;
+          position: relative;
+        }
+        .left-side, .right-side {
+          width: 100%;
+          flex-direction: row;
+          justify-content: center;
+        }
+      }
     </style>
   </head>
   <body>
@@ -92,8 +148,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
-          <!-- Replace this src with the actual logo image path -->
-          <img src="logo.png" alt="Logo">
+          <img src="logo.png" alt="Logo" style="height: 50px;">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -121,160 +176,171 @@
     </nav>
   </header>
 
-
   <!-- Main content -->
   <main>
-    <!-- Add some padding to prevent the form from being hidden under the navbar -->
-    <!-- <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd0kedANBIw98r06aix66MZxe_RtQ06GurmgPrWnVV3vRHzvQ/viewform?embedded=true" width="640" height="848" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> -->
-
-    <h1>Generate Certificate of Appreciation</h1>
-
     <div class="container">
-        <h1>Lets take a pledge to keep Giriraj clean during this Fagan Pheri!!</h1>
-        
-        <div class="input-container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <h1>Let's take a pledge to keep Giriraj clean during this Fagan Pheri 2025!!</h1>
+          
+          <div class="input-container">
             <b>Name:</b>
-            <input type="text" id="nameInput" placeholder="Enter your name" style="font-size: 18px; padding: 10px; border-radius: 5px;">
+            <input type="text" id="nameInput" placeholder="Enter the name of person who is taking pledge" class="form-control" style="font-size: 18px;">
+          </div>
+          
+          <button class="btn" onclick="generateCertificate()">Submit Pledge</button>
+          
+          <br><br>
+          
+          <!-- Initially hidden canvas -->
+          <canvas id="certificateCanvas" width="800" height="600"></canvas>
+          
+          <br><br>
+          
+          <!-- Initially disabled download button -->
+          <button class="btn" id="downloadButton" onclick="downloadCertificate()" disabled>Download Certificate</button>
         </div>
-        
-        <button class="btn" onclick="generateCertificate()">Generate Certificate</button>
-        
-        <br><br>
-        
-        <canvas id="certificateCanvas" width="800" height="600"></canvas>
-        <br><br>
-        <button class="btn" onclick="downloadCertificate()">Download Certificate</button>
+      </div>
     </div>
-
-    <script>
-        function generateCertificate() {
-    const name = document.getElementById("nameInput").value;
-    const canvas = document.getElementById("certificateCanvas");
-    const ctx = canvas.getContext("2d");
-
-    // Clear the previous canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Border Color and Width
-    ctx.strokeStyle = "#4CAF50";
-    ctx.lineWidth = 8;
-    ctx.strokeRect(0, 0, canvas.width, canvas.height);
-
-    // Add Title with Calligraphy Font (Dancing Script)
-    ctx.fillStyle = "#4CAF50";
-    ctx.font = "48px 'Dancing Script', cursive"; // Calligraphy font
-    ctx.textAlign = "center";
-    ctx.fillText("Certificate of Appreciation", canvas.width / 2, 70); // Adjust vertical position as needed
-
-    // Load background image (cert.png)
-    const cert_image = new Image();
-    cert_image.crossOrigin = "anonymous"; // Allow cross-origin resource sharing
-    cert_image.src = 'cert.png';
-
-    cert_image.onload = function() {
-        // Draw background image
-        ctx.drawImage(cert_image, 0, 0, canvas.width, canvas.height);
-
-        // Add certificate content after the image is loaded
-        ctx.fillStyle = "#000";
-        ctx.font = "18px Arial";
-        ctx.textAlign = "left";
-        ctx.fillText("This is to recognize that", 50, 130);
-
-        // Add the name after the "This is to recognize that" text
-        if (name) {
-            ctx.fillStyle = "#000";
-            ctx.font = "22px Arial";
-            ctx.fillText(name, 50, 160); // Position the name below the first line of text
-        }
-
-        ctx.fillText("has taken a powerful pledge on Fagan Sud 13 to keep Shatrunjay Teerth clean,", 50, 190);
-        ctx.fillText("protect its sacredness, and ensure its beauty lasts for generations to come.", 50, 220);
-
-        ctx.fillText("By taking this pledge, you’ve not only committed to preserving one of the holiest places", 50, 250);
-        ctx.fillText("on earth but also shown true leadership in protecting our environment.", 50, 280);
-        ctx.fillText("Your action speaks louder than words—your commitment to the cleanliness of", 50, 310);
-        ctx.fillText("Shatrunjay Teerth sets an inspiring example for all to follow.", 50, 340);
-
-        ctx.fillText("Date: [Date]    Location: [Location]   Fagan Sud 13", 50, 400);
-
-        // Load the initiative image (initiative.jpg)
-        const base_image = new Image();
-        base_image.crossOrigin = "anonymous"; // Allow cross-origin resource sharing
-        base_image.src = 'initiative.jpg';
-
-        base_image.onload = function() {
-            // Draw the initiative image
-            ctx.drawImage(base_image, 5, 5, 100, 100);
-            
-            // Add the rest of the certificate content
-            ctx.fillText("Signature", canvas.width / 2, 500);
-            ctx.fillText("[Organization Name]", canvas.width / 2, 530);
-            
-            // Signature Line
-            ctx.strokeStyle = "#000";
-            ctx.lineWidth = 2;
-            ctx.moveTo(50, 500);
-            ctx.lineTo(canvas.width - 50, 500);
-            ctx.stroke();
-        };
-    };
-}
-
-function downloadCertificate() {
-    const canvas = document.getElementById("certificateCanvas");
-    const link = document.createElement('a');
-    link.href = canvas.toDataURL('image/png'); // Get image data from the canvas
-    link.download = 'certificate_of_appreciation.png'; // Set filename for download
-    link.click(); // Trigger the download
-}
-
-
-    </script>
-
   </main>
 
-    <!-- FOOTER -->
-  <footer class="container">
-    <!-- Three columns of text below the carousel -->
+  <!-- Photo containers on left and right side -->
+  <div class="photo-container left-side">
+    <div class="photo-placeholder" id="photo1">
+      <img src="./pledgeform/image1.png" alt="Photo 1" />
+    </div>
+    <div class="photo-placeholder" id="photo2">
+      <img src="image2.jpg" alt="Photo 2" />
+    </div>
+    <div class="photo-placeholder" id="photo3">
+      <img src="image3.jpg" alt="Photo 3" />
+    </div>
+  </div>
+
+  <div class="photo-container right-side">
+    <div class="photo-placeholder" id="photo4">
+      <img src="image4.jpg" alt="Photo 4" />
+    </div>
+    <div class="photo-placeholder" id="photo5">
+      <img src="image5.jpg" alt="Photo 5" />
+    </div>
+    <div class="photo-placeholder" id="photo6">
+      <img src="image6.jpg" alt="Photo 6" />
+    </div>
+  </div>
+
+  <script>
+    // Fade-in photos on page load
+    window.onload = function() {
+      const photos = [
+        document.getElementById("photo1"),
+        document.getElementById("photo2"),
+        document.getElementById("photo3"),
+        document.getElementById("photo4"),
+        document.getElementById("photo5"),
+        document.getElementById("photo6")
+      ];
+
+      photos.forEach((photo, index) => {
+        setTimeout(() => {
+          photo.classList.add("fade-in");
+        }, 200 * index);  // Stagger the fade-in effect
+      });
+    };
+
+    // Generate certificate content
+    function generateCertificate() {
+        const name = document.getElementById("nameInput").value;
+        const canvas = document.getElementById("certificateCanvas");
+        const ctx = canvas.getContext("2d");
+
+        // Clear previous canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Set background color
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Load certificate image
+        const cert_image = new Image();
+        cert_image.src = 'certnew.png';
+
+        cert_image.onload = function() {
+            ctx.drawImage(cert_image, 0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#000";
+            ctx.font = "22px Arial";
+            ctx.fillText("||Jainam Jayathi Shashanam||", 250, 25);
+
+            // Load the GIF (treated as a static image)
+            const gif_image = new Image();
+            gif_image.src = 'initiative.jpg';  // Change this to your GIF file path
+
+            gif_image.onload = function() {
+                // Draw the GIF as a static image (first frame)
+                ctx.drawImage(gif_image, 50, 50, 100, 100);  // Adjust position and size as needed
+
+                ctx.fillStyle = "#000";
+                ctx.font = "22px Arial";
+                ctx.fillText("This is to recognize that", 275, 190);
+
+                // Add the name after the "This is to recognize that" text
+                if (name) {
+                    ctx.fillStyle = "#4CAF50";
+                    ctx.font = "35px Arial";
+                    ctx.fillText(name, 250, 250); // Position the name
+                }
+
+                // Add pledge text
+                ctx.fillStyle = "#000";
+                ctx.font = "22px Arial";
+                ctx.fillText("has taken a pledge to keep Shatrunjay Tirth clean, protect its sacredness,", 50, 300);
+                ctx.fillText("sanctity, and preserve its beauty during fagan pheri 2025..", 50, 330);
+                ctx.font = "30px Arial";
+                ctx.fillText("Your commitment to this sacred place and the", 75, 400);
+                ctx.fillText("environment sets an inspiring example for all.", 75, 430);
+
+                // Make canvas and download button visible
+                canvas.style.display = 'block';
+                canvas.style.opacity = 1;  // Fade in the canvas
+                document.getElementById('downloadButton').disabled = false;  // Enable download button
+            };
+        };
+
+        // Border Color and Width
+        ctx.strokeStyle = "#4CAF50";
+        ctx.lineWidth = 8;
+        ctx.strokeRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function downloadCertificate() {
+        const canvas = document.getElementById("certificateCanvas");
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = 'certificate_of_appreciation.png';
+        link.click();
+    }
+  </script>
+
+  <!-- <footer class="container">
     <div class="row">
-      <div class="col-lg-4">
-        OUR SUPPPORTERS
-          
-        </svg>
-
-        
-      </div><!-- /.col-lg-4 -->
-
-
-    <div class="row">
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
-          <img src="feri.png" alt="Image" width="140" height="150" class="rounded-circle"/>
-        </svg>
-
-        
-      </div><!-- /.col-lg-4 -->
-
       <div class="col-lg-4">
         <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
           <img src="initiative.jpg" alt="Image" width="140" height="150" class="rounded-circle"/>
         </svg>
-
-        
-      </div><!-- /.col-lg-4 -->
-      
+      </div>
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <img src="feri.png" alt="Image" width="140" height="150" class="rounded-circle"/>
+        </svg>
+      </div>
       <div class="col-lg-4">
         <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
           <img src="joinhands.png" alt="Image" width="140" height="140" class="rounded-circle"/>
         </svg>
-
-        
-      </div><!-- /.col-lg-4 -->
-    </div><!-- /.row -->
-
+      </div>
+    </div>
   </footer>
-
+ -->
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
 
