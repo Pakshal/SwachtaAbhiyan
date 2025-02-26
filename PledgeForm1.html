@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <title>Certificate Generation · Bootstrap v5.0</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts for Calligraphy -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        position: relative;
+      }
+
+      .container {
+        margin: 20px auto;
+        max-width: 100%;
+        padding-top: 80px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .input-container {
+        margin-bottom: 20px;
+      }
+
+      canvas {
+        border: 2px solid #4CAF50;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        display: none;
+        margin: 0 auto;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+
+      .btn {
+        background-color: #4CAF50;
+        color: white;
+        font-size: 18px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn:hover {
+        background-color: #45a049;
+      }
+
+      .col-md-8 {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .photo-container {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .photo-placeholder {
+        background-color: #ddd;
+        border-radius: 50%;
+        display: inline-block;
+        width: 140px;
+        height: 140px;
+        line-height: 140px;
+        text-align: center;
+        margin: 20px 0;
+        transition: transform 0.3s ease, opacity 0.5s ease;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .photo-placeholder img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .photo-placeholder.fade-in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Blur background on social media */
+      .blur-background {
+        filter: blur(8px);
+        pointer-events: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+
+      .social-media-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .social-media-content {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        width: 80%;
+        max-width: 500px;
+      }
+
+      .social-media-content button {
+        margin: 10px;
+      }
+
+      /* Social Media Icons */
+      .social-btn {
+        font-size: 24px;
+        color: #fff;
+        background-color: #0077b5; /* Default icon color */
+        padding: 12px;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: inline-block;
+        margin: 10px;
+        cursor: pointer;
+      }
+
+      .social-btn.facebook { background-color: #3b5998; }
+      .social-btn.whatsapp { background-color: #25d366; }
+      .social-btn.twitter { background-color: #1da1f2; }
+
+      /* Responsive Layout Adjustments */
+      @media (max-width: 768px) {
+        .input-container input {
+          width: 100%;
+          font-size: 16px;
+        }
+
+        .btn {
+          width: 100%;
+        }
+
+        .photo-placeholder {
+          width: 120px;
+          height: 120px;
+        }
+
+        .social-media-content {
+          width: 90%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="logo.png" alt="Logo" style="height: 50px;">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Why Faagan Feri</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="whyinitiative.html">About this initiative</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="pledgeform.html">Pledge Today</a>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <button class="btn btn-outline-success" type="submit">Pledge</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <h1>Let's take a pledge to keep Giriraj clean during this Fagan Pheri 2025!!</h1>
+            
+            <div class="input-container">
+              <b>Name:</b>
+              <input type="text" id="nameInput" placeholder="Enter the name of person who is taking pledge" class="form-control" style="font-size: 18px;" autofocus>
+            </div>
+            
+            <button class="btn" onclick="generateCertificate()">Submit Pledge</button>
+            
+            <br><br>
+            
+            <!-- Initially hidden canvas -->
+            <canvas id="certificateCanvas" width="800" height="600"></canvas>
+            
+            <br><br>
+            
+            <!-- Initially disabled download button -->
+            <button class="btn" id="downloadButton" onclick="downloadCertificate()" disabled>Download Certificate</button>
+
+            <!-- Social media share button -->
+            <button class="btn" onclick="openSocialMedia()">Share on Social Media</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Social Media Share Modal -->
+    <div class="social-media-container" id="socialMediaContainer">
+      <div class="social-media-content">
+        <h2>I have taken the pledge to maintain sanctity... Please take the pledge too!</h2>
+        <div>
+          <span class="social-btn facebook" onclick="shareOnFacebook()">Facebook</span>
+          <span class="social-btn whatsapp" onclick="shareOnWhatsApp()">WhatsApp</span>
+          <span class="social-btn twitter" onclick="shareOnTwitter()">Twitter</span>
+        </div>
+        <br>
+        <button class="btn btn-danger" onclick="closeSocialMedia()">Close</button>
+      </div>
+    </div>
+
+    <!-- Background blur effect -->
+    <div class="blur-background" id="blurBackground"></div>
+
+    <script>
+      // Function to generate certificate (simplified example)
+      // Function to generate the certificate
+function generateCertificate() {
+    // Get the name from the input field
+    const name = document.getElementById("nameInput").value;
+
+    // Check if the name is empty
+    if (!name.trim()) {
+        alert("Please enter a name before submitting the pledge.");
+        return; // Exit the function if no name is entered
+    }
+
+    const canvas = document.getElementById("certificateCanvas");
+    const ctx = canvas.getContext("2d");
+
+    // Clear previous canvas content
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Set background color for the certificate
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Load certificate image
+    const cert_image = new Image();
+    cert_image.src = 'certnew.png'; // Add the path to your certificate image here
+
+    cert_image.onload = function() {
+        ctx.drawImage(cert_image, 0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#000";
+        ctx.font = "22px Arial";
+        ctx.fillText("||Jainam Jayathi Shashanam||", 250, 25);
+
+        // Load the GIF (treated as a static image)
+        const gif_image = new Image();
+        gif_image.src = 'initiative.jpg';  // Change this to your GIF file path
+
+        gif_image.onload = function() {
+            // Draw the GIF as a static image (first frame)
+            ctx.drawImage(gif_image, 50, 50, 100, 100);  // Adjust position and size as needed
+
+            ctx.fillStyle = "#000";
+            ctx.font = "22px Arial";
+            ctx.fillText("This is to recognize that", 275, 190);
+
+            // Add the name after the "This is to recognize that" text
+            ctx.fillStyle = "#8B4513";  // Brown color
+            ctx.font = "italic 35px Arial";  // Italic font
+            ctx.fillText("Sri/Shri " + name, 215, 250);
+
+            // Add pledge text
+            ctx.fillStyle = "#000";
+            ctx.font = "22px Arial";
+            ctx.fillText("has taken a pledge to keep Shatrunjay Tirth clean, protect its sacredness,", 50, 300);
+            ctx.fillText("sanctity, and preserve its beauty during fagan pheri 2025..", 50, 330);
+            ctx.font = "25px Arial";
+            ctx.fillText("Thank you for taking this wonderful step towards", 125, 400);
+            ctx.fillText(" making a difference. Together, let’s make sure ", 125, 430);
+            ctx.fillText("Shatrunjay Tirth remains a place of", 175, 460);
+            ctx.fillText("purity and inspiration!", 235, 490);
+
+            // Make canvas and download button visible
+            canvas.style.display = 'block';
+            canvas.style.opacity = 1;  // Fade in the canvas
+            document.getElementById('downloadButton').disabled = false;  // Enable download button
+        };
+    };
+
+    // Set border color and width for the certificate canvas
+    ctx.strokeStyle = "#4CAF50";
+    ctx.lineWidth = 8;
+    ctx.strokeRect(0, 0, canvas.width, canvas.height);
+}
+
+      // Function to download the certificate as an image
+      function downloadCertificate() {
+        var canvas = document.getElementById("certificateCanvas");
+        var link = document.createElement('a');
+        link.href = canvas.toDataURL("image/png");
+        link.download = "certificate.png";
+        link.click();
+      }
+
+      // Open social media share
+      function openSocialMedia() {
+        document.getElementById("socialMediaContainer").style.display = "flex";
+        document.getElementById("blurBackground").style.display = "block";
+        document.getElementById("socialMediaContainer").style.opacity = 1;
+      }
+
+      // Close social media share
+      function closeSocialMedia() {
+        document.getElementById("socialMediaContainer").style.display = "none";
+        document.getElementById("blurBackground").style.display = "none";
+      }
+
+      // Share on Facebook
+      function shareOnFacebook() {
+        var url = "https://www.example.com/pledge"; // Link to the pledge
+        var message = "I have taken the pledge to maintain sanctity during this Fagan Pheri 2025. Join me in this initiative!";
+        var shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(message)}`;
+        window.open(shareUrl, "_blank");
+      }
+
+      // Share on WhatsApp
+      function shareOnWhatsApp() {
+        var url = "https://www.example.com/pledge"; // Link to the pledge
+        var message = "I have taken the pledge to maintain sanctity during this Fagan Pheri 2025. Join me in this initiative!";
+        var shareUrl = `https://wa.me/?text=${encodeURIComponent(message + " " + url)}`;
+        window.open(shareUrl, "_blank");
+      }
+
+      // Share on Twitter
+      function shareOnTwitter() {
+        var url = "https://www.example.com/pledge"; // Link to the pledge
+        var message = "I have taken the pledge to maintain sanctity during this Fagan Pheri 2025. Join me in this initiative!";
+        var shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}&url=${encodeURIComponent(url)}`;
+        window.open(shareUrl, "_blank");
+      }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
