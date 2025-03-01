@@ -7,6 +7,7 @@
     <meta property="og:title" content="A Pledge to Keep Shatrunjay Clean and Sacred" />
     <meta property="og:description" content="Take a pledge to maintain the sanctity of Shatrunjay Tirth. Join the movement to preserve this sacred space during Fagan Pheri 2025. Together, we can make a lasting impact on the environment." />
     <meta property="og:image" content="initiative.jpg" />
+    <meta property="og:url" content="Link to Your Page" />
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -269,8 +270,10 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-8">
-          <h1>Let's take a pledge to keep Giriraj clean during this Fagan Pheri 2025!!</h1>
-          
+          <h1>आइए हम सब मिलकर शत्रुंजय तीर्थ को फागण फेरि 2025 के दौरान स्वच्छ और पवित्र रखने का संकल्प लें!!</h1>
+          <div class="link-container">
+             <p>More details can be found in the <a href="whyinitiative.html">initiative page</a>.</p>
+          </div>
           <div class="input-container">
             <b>Name:</b>
             <input type="text" id="nameInput" placeholder="Enter the name of person who is taking pledge" class="form-control" style="font-size: 18px;" autofocus>
@@ -279,10 +282,8 @@
           <button class="btn" onclick="generateCertificate()">Submit Pledge</button>
           <br><br>
           <!-- Initially disabled download button -->
-          <button class="btn" id="downloadButton" onclick="downloadCertificate()" disabled>Download Certificate</button>
-          
-          <br><br>
-          
+          <button class="btn" id="downloadButton" onclick="downloadCertificate()" disabled>Download Certificate</button><br><br>
+          <br>
           <!-- Initially hidden canvas -->
           <canvas id="certificateCanvas" width="800" height="600"></canvas>
 
@@ -301,10 +302,16 @@
       <div class="social-media-content">
         <h2>I have taken the pledge to maintain sanctity... Please take the pledge too!</h2>
         <div>
-          <span class="social-btn facebook" onclick="shareOnFacebook()">Facebook</span>
-          <span class="social-btn whatsapp" onclick="shareOnWhatsApp()">WhatsApp</span>
-          <span class="social-btn twitter" onclick="shareOnTwitter()">Twitter</span>
-        </div>
+    <span class="social-btn facebook" onclick="shareOnFacebook()">
+        <img src="./pledgeform/facebook-icon.png" alt="Facebook" style="width: 30px; height: 32px;"> Facebook
+    </span>
+    <span class="social-btn whatsapp" onclick="shareOnWhatsApp()">
+        <img src="./pledgeform/whatsapp-icon.png" alt="WhatsApp" style="width: 30px; height: 32px;"> WhatsApp
+    </span>
+    <span class="social-btn twitter" onclick="shareOnTwitter()">
+        <img src="./pledgeform/twitter-icon.png" alt="Twitter" style="width: 30px; height: 32px;"> Twitter
+    </span>
+</div>
         <br>
         <button class="btn btn-danger" onclick="closeSocialMedia()">Close</button>
       </div>
@@ -459,7 +466,19 @@ function generateCertificate() {
       function shareOnFacebook() {
         var name = document.getElementById("nameInput").value;
         var url = "https://www.example.com/pledge"; // Link to the pledge
-        var message = "I have taken the pledge to maintain sanctity during this Fagan Pheri 2025. Join me in this initiative!";
+        let message = `
+शत्रुंजय तीर्थ को स्वच्छ रखने की शपथ
+
+"जैनम जयति शाशनम्"
+
+**श्री/श्रीमति ${name}** ने शत्रुंजय तीर्थ को स्वच्छ रखने और उसकी पवित्रता को बनाए रखने का संकल्प लिया है।
+
+**2025 के फागण फेरि** के दौरान हम सभी मिलकर इस पवित्र स्थल की धार्मिक और सांस्कृतिक धरोहर की रक्षा करेंगे। 
+
+ **आप भी इस शपथ में शामिल हो सकते हैं!** आइए, शत्रुंजय तीर्थ को स्वच्छ रखने के इस महान कार्य में हम सब साथ आएं। आपका योगदान बहुत महत्वपूर्ण है! 
+
+**धन्यवाद!** 
+`;
         var shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(message)}`;
         window.open(shareUrl, "_blank");
       }
@@ -489,7 +508,19 @@ function generateCertificate() {
       function shareOnTwitter() {
         var name = document.getElementById("nameInput").value;
         var url = "https://www.example.com/pledge"; // Link to the pledge
-        var message = "I have taken the pledge to maintain sanctity during this Fagan Pheri 2025. Join me in this initiative!";
+        let message = `
+शत्रुंजय तीर्थ को स्वच्छ रखने की शपथ
+
+"जैनम जयति शाशनम्"
+
+**श्री/श्रीमति ${name}** ने शत्रुंजय तीर्थ को स्वच्छ रखने और उसकी पवित्रता को बनाए रखने का संकल्प लिया है।
+
+**2025 के फागण फेरि** के दौरान हम सभी मिलकर इस पवित्र स्थल की धार्मिक और सांस्कृतिक धरोहर की रक्षा करेंगे। 
+
+ **आप भी इस शपथ में शामिल हो सकते हैं!** आइए, शत्रुंजय तीर्थ को स्वच्छ रखने के इस महान कार्य में हम सब साथ आएं। आपका योगदान बहुत महत्वपूर्ण है! 
+
+**धन्यवाद!** 
+`;
         var shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}&url=${encodeURIComponent(url)}`;
         window.open(shareUrl, "_blank");
       }
