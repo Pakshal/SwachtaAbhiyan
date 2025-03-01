@@ -116,6 +116,93 @@
         transform: translateY(0);
       }
 
+      /* Social Media Buttons */
+      .social-btn {
+        font-size: 24px;
+        color: #fff;
+        background-color: #0077b5; /* Default icon color */
+        padding: 12px;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: inline-block;
+        margin: 10px;
+        cursor: pointer;
+      }
+
+      .social-btn.facebook { background-color: #3b5998; }
+      .social-btn.whatsapp { background-color: #25d366; }
+      .social-btn.twitter { background-color: #1da1f2; }
+
+      /* Mobile Adjustments */
+      @media (max-width: 768px) {
+        .btn {
+          width: 100%;
+          font-size: 16px;
+        }
+
+        .social-media-content {
+          width: 90%;
+        }
+
+        .photo-placeholder {
+          width: 120px;
+          height: 120px;
+        }
+
+        .input-container input {
+          width: 100%;
+          font-size: 16px;
+        }
+      }
+
+      /* Tablet and Desktop Adjustments */
+      @media (max-width: 1024px) {
+        .container {
+          width: 90%;
+        }
+
+        canvas {
+          max-width: 90%;
+        }
+      }
+
+      /* Social Media Modal */
+      .social-media-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .social-media-content {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        width: 80%;
+        max-width: 500px;
+      }
+
+      .blur-background {
+        filter: blur(8px);
+        pointer-events: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+
       /* Added responsiveness */
       @media (max-width: 768px) {
         .input-container input {
@@ -190,20 +277,41 @@
           </div>
           
           <button class="btn" onclick="generateCertificate()">Submit Pledge</button>
+          <!-- Initially disabled download button -->
+          <button class="btn" id="downloadButton" onclick="downloadCertificate()" disabled>Download Certificate</button>
           
           <br><br>
           
           <!-- Initially hidden canvas -->
           <canvas id="certificateCanvas" width="800" height="600"></canvas>
+
+          <br><br>
+          <!-- Social media share button -->
+          <button class="btn" id="socialmedia" onclick="openSocialMedia()" disabled>Share on Social Media</button>
           
           <br><br>
-          
-          <!-- Initially disabled download button -->
-          <button class="btn" id="downloadButton" onclick="downloadCertificate()" disabled>Download Certificate</button>
         </div>
       </div>
     </div>
   </main>
+
+  <!-- Social Media Share Modal -->
+    <div class="social-media-container" id="socialMediaContainer">
+      <div class="social-media-content">
+        <h2>I have taken the pledge to maintain sanctity... Please take the pledge too!</h2>
+        <div>
+          <span class="social-btn facebook" onclick="shareOnFacebook()">Facebook</span>
+          <span class="social-btn whatsapp" onclick="shareOnWhatsApp()">WhatsApp</span>
+          <span class="social-btn twitter" onclick="shareOnTwitter()">Twitter</span>
+        </div>
+        <br>
+        <button class="btn btn-danger" onclick="closeSocialMedia()">Close</button>
+      </div>
+    </div>
+
+<!-- Background blur effect -->
+    <div class="blur-background" id="blurBackground"></div>
+
 
   <!-- Photo containers on left and right side -->
   <div class="photo-container left-side">
@@ -278,7 +386,7 @@ function generateCertificate() {
         ctx.drawImage(cert_image, 0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "#000";
         ctx.font = "22px Arial";
-        ctx.fillText("||Jainam Jayathi Shashanam||", 250, 25);
+        ctx.fillText("||जैनम जयति शाशनम्||", 300, 25);
 
         // Load the GIF (treated as a static image)
         const gif_image = new Image();
@@ -290,28 +398,31 @@ function generateCertificate() {
 
             ctx.fillStyle = "#000";
             ctx.font = "22px Arial";
-            ctx.fillText("This is to recognize that", 275, 190);
+            ctx.fillText("यह प्रमाणित करने के लिए है कि", 275, 190);
 
             // Add the name after the "This is to recognize that" text
             ctx.fillStyle = "#8B4513";  // Brown color
             ctx.font = "italic 35px Arial";  // Italic font
-            ctx.fillText("Sri/Shri " + name, 215, 250);
+            ctx.fillText("श्री/श्रीमति " + name, 215, 250);
 
             // Add pledge text
             ctx.fillStyle = "#000";
             ctx.font = "22px Arial";
-            ctx.fillText("has taken a pledge to keep Shatrunjay Tirth clean, protect its sacredness,", 50, 300);
-            ctx.fillText("sanctity, and preserve its beauty during fagan pheri 2025..", 50, 330);
+            ctx.fillText("ने शत्रुंजय तीर्थ को स्वच्छ रखने, उसकी पवित्रता और सुंदरता को बनाए रखने का संकल्प", 50, 300);
+            ctx.fillText("लिया है,और 2025 के फागण फेरि के दौरान इस स्थान के धार्मिक और सांस्कृतिक महत्व को", 50, 330);
+            ctx.fillText("सुरक्षित रखने की जिम्मेदारी भी उठाई है। यह कदम शत्रुंजय तीर्थ की समृद्धि और", 50, 360);
+            ctx.fillText("उसकी आध्यात्मिक शांति को संरक्षित रखने में सहायक होगा।", 50, 390);
+            
             ctx.font = "25px Arial";
-            ctx.fillText("Thank you for taking this wonderful step towards", 125, 400);
-            ctx.fillText(" making a difference. Together, let’s make sure ", 125, 430);
-            ctx.fillText("Shatrunjay Tirth remains a place of", 175, 460);
-            ctx.fillText("purity and inspiration!", 235, 490);
+            ctx.fillText("आपके इस महान प्रयास के लिए हम आपके आभारी हैं।", 135, 480);
+            ctx.fillText("हम सभी मिलकर इस प्रयास को सफल बनाएं, ताकि शत्रुंजय तीर्थ", 105, 510);
+            ctx.fillText("हमेशा एक पवित्र और प्रेरणादायक स्थल बना रहे!", 145, 540);
 
             // Make canvas and download button visible
             canvas.style.display = 'block';
             canvas.style.opacity = 1;  // Fade in the canvas
             document.getElementById('downloadButton').disabled = false;  // Enable download button
+            document.getElementById('socialmedia').disabled = false;
         };
     };
 
@@ -329,6 +440,52 @@ function generateCertificate() {
         link.download = 'certificate_of_appreciation.png';
         link.click();
     }
+
+    // Open social media share
+      function openSocialMedia() {
+        document.getElementById("socialMediaContainer").style.display = "flex";
+        document.getElementById("blurBackground").style.display = "block";
+        document.getElementById("socialMediaContainer").style.opacity = 1;
+      }
+
+      // Close social media share
+      function closeSocialMedia() {
+        document.getElementById("socialMediaContainer").style.display = "none";
+        document.getElementById("blurBackground").style.display = "none";
+      }
+
+      // Share on Facebook
+      function shareOnFacebook() {
+        var name = document.getElementById("nameInput").value;
+        var url = "https://www.example.com/pledge"; // Link to the pledge
+        var message = "I have taken the pledge to maintain sanctity during this Fagan Pheri 2025. Join me in this initiative!";
+        var shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(message)}`;
+        window.open(shareUrl, "_blank");
+      }
+
+      // Share on WhatsApp
+      function shareOnWhatsApp() {
+        var name = document.getElementById("nameInput").value;
+        var url = "https://www.example.com/pledge"; // Link to the pledge
+        var message = ```🌸🙏 शत्रुंजय तीर्थ को स्वच्छ रखने की शपथ 🙏🌸
+                      "जैनम जयति शाशनम्" 🚩
+                      श्री/श्रीमति```+ name +```ने शत्रुंजय तीर्थ को स्वच्छ रखने और उसकी पवित्रता को बनाए रखने का संकल्प लिया है। ✨
+                      2025 के फागण फेरि के दौरान हम सभी मिलकर इस पवित्र स्थल की धार्मिक और सांस्कृतिक धरोहर की रक्षा करेंगे। 🙏
+                      🌱 आप भी इस शपथ में शामिल हो सकते हैं! आइए, शत्रुंजय तीर्थ को स्वच्छ रखने के इस महान कार्य में हम सब साथ आएं। आपका योगदान बहुत महत्वपूर्ण है! 🙌
+                      धन्यवाद! 🌸```;
+        var shareUrl = `https://wa.me/?text=${encodeURIComponent(message + " " + url)}`;
+        window.open(shareUrl, "_blank");
+      }
+
+      // Share on Twitter
+      function shareOnTwitter() {
+        var name = document.getElementById("nameInput").value;
+        var url = "https://www.example.com/pledge"; // Link to the pledge
+        var message = "I have taken the pledge to maintain sanctity during this Fagan Pheri 2025. Join me in this initiative!";
+        var shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}&url=${encodeURIComponent(url)}`;
+        window.open(shareUrl, "_blank");
+      }
+
   </script>
 
   <!-- <footer class="container">
