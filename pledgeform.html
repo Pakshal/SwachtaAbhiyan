@@ -15,6 +15,8 @@
     <!-- Google Fonts for Calligraphy -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>  <!-- QR Code Library -->
+
     <style>
       body {
         font-family: 'Arial', sans-serif;
@@ -248,13 +250,16 @@
               <a class="nav-link active" aria-current="page" href="index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Why Faagan Feri</a>
+              <a class="nav-link" href="feri.html">Why Faagan Feri</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="whyinitiative.html">About this initiative</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="pledgeform.html">Pledge Today</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="updates.html">Updates</a>
             </li>
           </ul>
           <form class="d-flex">
@@ -327,7 +332,7 @@
       <img src="./pledgeform/image1.png" alt="Photo 1" />
     </div>
     <div class="photo-placeholder" id="photo2">
-      <img src="./pledgeform/image2.jpg" alt="Photo 2" />
+      <img src="./pledgeform/image4.png" alt="Photo 2" />
     </div>
     <div class="photo-placeholder" id="photo3">
       <img src="./pledgeform/image3.jpg" alt="Photo 3" />
@@ -336,7 +341,7 @@
 
   <div class="photo-container right-side">
     <div class="photo-placeholder" id="photo4">
-      <img src="./pledgeform/image4.png" alt="Photo 4" />
+      <img src="./pledgeform/image2.jpg" alt="Photo 4" />
     </div>
     <div class="photo-placeholder" id="photo5">
       <img src="./pledgeform/image5.png" alt="Photo 5" />
@@ -415,22 +420,39 @@ function generateCertificate() {
 
             // Add pledge text
             ctx.fillStyle = "#000";
-            ctx.font = "22px Arial";
-            ctx.fillText("ने शत्रुंजय तीर्थ को स्वच्छ रखने, उसकी पवित्रता और सुंदरता को बनाए रखने का संकल्प", 50, 300);
-            ctx.fillText("लिया है,और 2025 के फागण फेरि के दौरान इस स्थान के धार्मिक और सांस्कृतिक महत्व को", 50, 330);
-            ctx.fillText("सुरक्षित रखने की जिम्मेदारी भी उठाई है। यह कदम शत्रुंजय तीर्थ की समृद्धि और", 50, 360);
-            ctx.fillText("उसकी आध्यात्मिक शांति को संरक्षित रखने में सहायक होगा।", 50, 390);
+            ctx.font = "25px Arial";
+            ctx.fillText("ने 2025 के फागण फेरि के दौरान शत्रुंजय तीर्थ को स्वच्छ रखने, उसकी पवित्रता", 50, 300);
+            ctx.fillText("और सुंदरता को बनाए रखने का संकल्प लिया है।", 50, 330);
             
             ctx.font = "25px Arial";
             ctx.fillText("आपके इस महान प्रयास के लिए हम आपके आभारी हैं।", 135, 480);
             ctx.fillText("हम सभी मिलकर इस प्रयास को सफल बनाएं, ताकि शत्रुंजय तीर्थ", 105, 510);
             ctx.fillText("हमेशा एक पवित्र और प्रेरणादायक स्थल बना रहे!", 145, 540);
 
-            // Make canvas and download button visible
-            canvas.style.display = 'block';
-            canvas.style.opacity = 1;  // Fade in the canvas
-            document.getElementById('downloadButton').disabled = false;  // Enable download button
-            document.getElementById('socialmedia').disabled = false;
+                        // Generate the QR Code
+            const pledgeURL = 'https://your-pledge-link.com';  // URL for the pledge page
+            const qrCodeSize = 80;  // Size of the QR code
+            const qrCanvas = document.createElement('canvas');
+            QRCode.toCanvas(qrCanvas, pledgeURL, { width: qrCodeSize }, function(error) {
+                if (error) console.error(error);
+                // Draw QR Code on the main canvas at the bottom right corner
+                const qrX = canvas.width - qrCodeSize - 15;  // 30px padding from the right edge
+                const qrY = canvas.height - qrCodeSize - 15;  // 30px padding from the bottom edge
+                ctx.drawImage(qrCanvas, qrX, qrY);
+                ctx.font = "10px Arial";
+                ctx.fillText("To take pledge scan here!!", 685, 500);
+                
+                // Make canvas and download button visible
+                canvas.style.display = 'block';
+                canvas.style.opacity = 1;  // Fade in the canvas
+                document.getElementById('downloadButton').disabled = false;  // Enable download button
+                document.getElementById('socialmedia').disabled = false;
+            });
+            // // Make canvas and download button visible
+            // canvas.style.display = 'block';
+            // canvas.style.opacity = 1;  // Fade in the canvas
+            // document.getElementById('downloadButton').disabled = false;  // Enable download button
+            // document.getElementById('socialmedia').disabled = false;
         };
     };
 
